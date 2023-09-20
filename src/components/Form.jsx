@@ -10,6 +10,7 @@ const Form = ({ inputTodo, setInputTodo, todos, setTodos }) => {
       completed: false,
     };
     setTodos([...todos, newTodo]);
+    setInputTodo("");
   };
 
   return (
