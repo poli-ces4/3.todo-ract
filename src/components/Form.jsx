@@ -1,14 +1,30 @@
+/* eslint-disable react/prop-types */
 import style from "./Form.module.css";
-const Form = () => {
+import uuid4 from "uuid4";
+const Form = ({ inputTodo, setInputTodo, todos, setTodos }) => {
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    const newTodo = {
+      id: uuid4(),
+      title: inputTodo,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
+  };
+
   return (
-    <form>
+    <form onSubmit={handlerSubmit}>
       <input
         type="text"
         name="task"
         placeholder="Enter todo"
         className={style.taskInput}
+        value={inputTodo}
+        onChange={(e) => setInputTodo(e.target.value)}
       />
-      <button className={style.button}>Add</button>
+      <button type="submit" className={style.button}>
+        Add
+      </button>
     </form>
   );
 };
